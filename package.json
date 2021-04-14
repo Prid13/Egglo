@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@fontsource/dosis": "^4.2.2",
+    "@fontsource/fira-sans": "^4.2.3",
     "@fortawesome/vue-fontawesome": "^3.0.0-3",
     "@popperjs/core": "^2.9.2",
     "axios": "^0.21.1",

@@ -3,27 +3,9 @@
 </template>
 
 <style>
-@font-face {
-  font-family: 'Glow-Sans';
-  font-weight: normal;
-  src: url('./fonts/GlowSansSC-Normal-Regular.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'Glow-Sans';
-  font-weight: bold;
-  src: url('./fonts/GlowSansSC-Normal-Bold.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'Glow-Sans';
-  font-weight: lighter;
-  src: url('./fonts/GlowSansSC-Normal-Light.otf') format('opentype');
-}
-
 #app {
   min-height: 100vh!important;
-  font-family: 'Glow-Sans', Helvetica, Arial, sans-serif;
+  font-family: 'Fira Sans', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
