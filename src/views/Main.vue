@@ -37,7 +37,19 @@
                                 :data="results"
                                 :show-index="true"
                                 :clickable="true"
-                                @onClick="openModal" />
+                                @onClick="openModal">
+
+                                <template v-slot:default="header">
+                                    <span v-if="header.key !== 'konkurs'">
+                                        {{ header.value }}
+                                    </span>
+                                    <span v-else class="konkurs konkurs-red d-flex justify-content-start">
+                                        {{ header.value ? 'Konkurs' : ''}}
+                                        <img src="../assets/cracked-egg.png" v-if="header.value">
+                                    </span>
+                                </template>
+
+                            </Table>
                         </div>
                     </transition>
 
@@ -240,6 +252,9 @@ export default {
     width: 30%;
 }
 
+.konkurs-red {
+    color: red;
+}
 .konkurs img {
     height: 25px;
 }
@@ -248,7 +263,7 @@ export default {
     transition: opacity 300ms ease;
 }
 .fade-leave-active {
-    transition: opacity 100ms ease;
+    transition: opacity 50ms ease;
 }
 .fade-enter-from, .fade-leave-to {
     opacity: 0;

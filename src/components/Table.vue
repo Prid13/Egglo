@@ -13,13 +13,9 @@
             <tr v-for="(row, index) in data" :key="row.organisasjonsnummer" @click="$emit('onClick', row)">
                 <th v-if="showIndex" scope="row">{{ index+1 }}</th>
                 <td v-for="(header, index) in headers" :key="index">
-                    <span v-if="header.key !== 'konkurs'">
+                    <slot :key="header.key" :value="row[header.key]">
                         {{ row[header.key] }}
-                    </span>
-                    <span v-else class="konkurs d-flex justify-content-start">
-                        {{ row[header.key] ? 'Konkurs' : ''}}
-                        <img src="../assets/cracked-egg.png" v-if="row[header.key]">
-                    </span>
+                    </slot>
                 </td>
                 <td v-if="clickable" class="px-3"><i data-feather="info" class="icon"></i></td>
             </tr>
@@ -75,12 +71,6 @@ tbody tr {
 
 .icon {
     color: #0066ff;
-}
-.konkurs {
-    color: red;
-}
-.konkurs img {
-    height: 25px;
 }
 
 .table-primary {
