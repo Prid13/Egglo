@@ -11,7 +11,7 @@
 
                 <div
                     class="row min-vh-75 d-flex flex-column align-items-center"
-                    :class="[resultsShown ? 'justify-content-start' : 'justify-content-center']">
+                    :class="[resultsShownTransitionEnd ? 'justify-content-start' : 'justify-content-center']">
 
                     <div class="col-12 w-50 d-flex flex-column justify-content-center mb-5">
                         <div class="input-group shadow-sm search-container">
@@ -30,7 +30,7 @@
                         </div>
                     </div>
 
-                    <transition name="fade">
+                    <transition name="fade" @after-leave="transitionEnd">
                         <div v-show="resultsShown" class="col-8">
                             <Table
                                 :headers="tableHeaders"
@@ -99,6 +99,7 @@ export default {
     data() {
         return {
             resultsShown: false,
+            resultsShownTransitionEnd: false, // trigger after animation end
             showModal: false,
             modalData: {},
             results: [],
@@ -139,7 +140,7 @@ export default {
             const value = event.target.value;
 
             if(value.length >= 3){
-                this.resultsShown = true;
+                this.resultsShown = this.resultsShownTransitionEnd = true;
                 this.fetchResults();
             } else {
                 this.resultsShown = false;
@@ -181,6 +182,9 @@ export default {
         openModal(row) {
             this.modalData = row;
             this.showModal = true;
+        },
+        transitionEnd() {
+            this.resultsShownTransitionEnd = false;
         }
     },
     components: {
@@ -244,7 +248,7 @@ export default {
     transition: opacity 300ms ease;
 }
 .fade-leave-active {
-    transition: opacity 50ms ease;
+    transition: opacity 100ms ease;
 }
 .fade-enter-from, .fade-leave-to {
     opacity: 0;
